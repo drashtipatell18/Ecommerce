@@ -15,10 +15,13 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+Route::get('/login',[HomeController::class,'Login'])->name('login');
+Route::get('/loginStore',[HomeController::class,'loginStore'])->name('loginStore');
+Route::get('/logout',[HomeController::class,'Logout'])->name('logout');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
