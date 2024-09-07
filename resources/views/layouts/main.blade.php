@@ -42,8 +42,8 @@
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             @php
-                                // Log the image path instead of dumping it
-                                $image = auth()->user()->image;
+                                $user = auth()->user();
+                                $image = $user ? $user->image : null;
                                 Log::info('User image: ' . $image);
                             @endphp
                             @if (auth()->check() && $image)
@@ -53,8 +53,10 @@
                             <span class="d-sm-none d-lg-inline-block"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right pullDown">
-                            <div class="dropdown-title">{{ auth()->user()->name }}</div>
-                            {{-- <a href="profile.html" class="dropdown-item has-icon"> <i class="far
+                            @php
+                                $user = auth()->user();
+                            @endphp
+                            <div class="dropdown-title">{{ $user ? $user->name : 'Guest' }}</div> {{-- <a href="profile.html" class="dropdown-item has-icon"> <i class="far
 										fa-user"></i> Profile
               </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
                 Activities

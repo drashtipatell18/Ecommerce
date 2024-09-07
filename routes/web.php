@@ -20,6 +20,12 @@ Route::get('/', function () {
 Route::get('/login',[HomeController::class,'Login'])->name('login');
 Route::get('/loginStore',[HomeController::class,'loginStore'])->name('loginStore');
 Route::get('/logout',[HomeController::class,'Logout'])->name('logout');
+Route::get('/forget-password', [DashboardController::class, 'showForgetPasswordForm'])->name('forget.password');
+Route::post('/forget-password', [DashboardController::class, 'sendResetLinkEmail'])->name('forget.password.email');
+Route::get('/reset/{token}', [DashboardController::class, 'reset'])->name('reset');
+Route::post('/reset/{token}', [DashboardController::class, 'postReset'])->name('post_reset');
+Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass');
+Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword');
 
 Auth::routes();
 

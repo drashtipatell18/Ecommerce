@@ -52,24 +52,33 @@
     <div class="container">
         <div class="card">
             <div class="card-header text-center">
-                <h3>Login</h3>
+                <h3>Reset Password</h3>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('login') }}" id="login">
+                <form method="POST" action="{{ route('post_reset', ['token' => $token]) }}" class="login">
                     @csrf
-                    <div class="mb-3 form-group"> <!-- Added form-group class -->
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input class="au-input au-input--full form-control @error('new_password') is-invalid @enderror"
+                            type="password" name="new_password" placeholder="Password">
+                        @error('new_password')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    <div class="mb-3 form-group"> <!-- Added form-group class -->
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input
+                            class="au-input au-input--full form-control @error('confirm_password') is-invalid @enderror"
+                            type="password" name="confirm_password" placeholder="Password">
+                        @error('confirm_password')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    <div class="text-end mt-3">
-                        <a href="{{ route('forget.password') }}">Forgot Password?</a>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn-custom">Login</button>
+                    <button class="btn-custom" type="submit">submit</button>
                 </form>
             </div>
         </div>

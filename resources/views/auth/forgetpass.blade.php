@@ -52,24 +52,16 @@
     <div class="container">
         <div class="card">
             <div class="card-header text-center">
-                <h3>Login</h3>
+                <h3>Forget Password</h3>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('login') }}" id="login">
+                <form method="POST" action="{{ route('forget.password.email') }}" id="login">
                     @csrf
                     <div class="mb-3 form-group"> <!-- Added form-group class -->
                         <label for="email" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="email" name="email">
                     </div>
-                    <div class="mb-3 form-group"> <!-- Added form-group class -->
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="text-end mt-3">
-                        <a href="{{ route('forget.password') }}">Forgot Password?</a>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn-custom">Login</button>
+                    <button type="submit" class="btn-custom">Send</button>
                 </form>
             </div>
         </div>
@@ -119,21 +111,21 @@
                     $(element).removeClass("is-invalid").addClass("is-valid");
                 }
             });
-            $('#login').on('submit', function(e) {
-                e.preventDefault();
-                $.ajax({
-                    url: $(this).attr('action'), // Use the form's action URL
-                    method: 'POST',
-                    data: $(this).serialize(), // Serialize form data
-                    success: function(response) {
-                        toastr.success('Login successful!'); // Show success message
-                        window.location.href = '/dashboard'; // Redirect to the dashboard
-                    },
-                    error: function(xhr) {
-                        toastr.error('Login failed!'); // Show error message
-                    }
-                });
-            });
+            // $('#login').on('submit', function(e) {
+            //     e.preventDefault();
+            //     $.ajax({
+            //         url: $(this).attr('action'), // Use the form's action URL
+            //         method: 'POST',
+            //         data: $(this).serialize(), // Serialize form data
+            //         success: function(response) {
+            //             toastr.success('Login successful!'); // Show success message
+            //             window.location.href = '/dashboard'; // Redirect to the dashboard
+            //         },
+            //         error: function(xhr) {
+            //             toastr.error('Login failed!'); // Show error message
+            //         }
+            //     });
+            // });
             setTimeout(function() {
                 $(".alert-danger").fadeOut(1000);
             }, 1000);
