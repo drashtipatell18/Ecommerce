@@ -79,4 +79,5 @@ class DashboardController extends Controller
             return redirect('login')->with('success', 'Password successfully reset.');
         }
     }
+    
 }
